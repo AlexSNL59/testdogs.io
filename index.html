@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Virtual Dog Images - CryptoDogs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            margin-top: 30px;
+        }
+
+        #dogAttributes {
+            margin-top: 20px;
+        }
+
+        #dogImageContainer {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dog-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #ffcc66;
+            margin: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .dog-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Virtual Dog Images - CryptoDogs</h1>
+    <div id="dogAttributes">
+        <label for="size">Size:</label>
+        <select id="size">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+        <label for="color">Color:</label>
+        <select id="color">
+            <option value="brown">Brown</option>
+            <option value="black">Black</option>
+            <option value="white">White</option>
+        </select>
+        <button onclick="generateImage()">Generate Dog Image</button>
+    </div>
+    <div id="dogImageContainer">
+        <!-- Dog images will be displayed here -->
+    </div>
+
+    <script>
+        // Define dog image URLs based on attributes
+        const dogImages = {
+            small: {
+                brown: 'url_to_small_brown_dog_image.jpg',
+                black: 'url_to_small_black_dog_image.jpg',
+                white: 'url_to_small_white_dog_image.jpg',
+            },
+            medium: {
+                brown: 'url_to_medium_brown_dog_image.jpg',
+                black: 'url_to_medium_black_dog_image.jpg',
+                white: 'url_to_medium_white_dog_image.jpg',
+            },
+            large: {
+                brown: 'url_to_large_brown_dog_image.jpg',
+                black: 'url_to_large_black_dog_image.jpg',
+                white: 'url_to_large_white_dog_image.jpg',
+            }
+        };
+
+        function generateImage() {
+            // Get selected attributes
+            const selectedSize = document.getElementById('size').value;
+            const selectedColor = document.getElementById('color').value;
+
+            // Get the dog image container element
+            const dogImageContainer = document.getElementById('dogImageContainer');
+
+            // Create a new image element
+            const image = new Image();
+            image.src = dogImages[selectedSize][selectedColor];
+            image.alt = `${selectedSize} ${selectedColor} dog`;
+
+            // Add class for CryptoDogs style
+            image.classList.add('dog-image');
+
+            // Add the new image to the container
+            dogImageContainer.appendChild(image);
+        }
+    </script>
+</body>
+</html>
